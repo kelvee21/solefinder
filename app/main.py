@@ -11,6 +11,7 @@ app = FastAPI(title="SoleFinder")
 
 @app.post("/merchants", status_code=201, response_model=schemas.MerchantOut)
 def register_merchant(data: schemas.MerchantIn, db: sqlite3.Connection = Depends(get_db)):
+    print(f"POST /merchants name={data.name} email={data.email}")
     cur = db.execute(
         "INSERT INTO merchants (name, email) VALUES (?, ?)",
         (data.name, data.email),
@@ -23,6 +24,7 @@ def register_merchant(data: schemas.MerchantIn, db: sqlite3.Connection = Depends
 
 @app.post("/shoes", status_code=201, response_model=schemas.ShoeOut)
 def add_shoe(data: schemas.ShoeIn, db: sqlite3.Connection = Depends(get_db)):
+    print(f"POST /shoes brand={data.brand} model={data.model} price={data.price}")
     cur = db.execute(
         "INSERT INTO shoes (brand, model, price) VALUES (?, ?, ?)",
         (data.brand, data.model, data.price),
@@ -35,6 +37,7 @@ def add_shoe(data: schemas.ShoeIn, db: sqlite3.Connection = Depends(get_db)):
 
 @app.get("/shoes", response_model=list[schemas.ShoeOut])
 def list_shoes(db: sqlite3.Connection = Depends(get_db)):
+    print("GET /shoes")
     rows = db.execute("SELECT id, brand, model, price FROM shoes ORDER BY id").fetchall()
     return [dict(r) for r in rows]
 
