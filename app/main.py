@@ -37,3 +37,9 @@ def add_shoe(data: schemas.ShoeIn, db: sqlite3.Connection = Depends(get_db)):
 def list_shoes(db: sqlite3.Connection = Depends(get_db)):
     rows = db.execute("SELECT id, brand, model, price FROM shoes ORDER BY id").fetchall()
     return [dict(r) for r in rows]
+
+
+@app.get("/health")
+def health():
+    print("GET /health")
+    return {"status": "ok"}
