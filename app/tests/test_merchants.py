@@ -26,3 +26,8 @@ def test_register_invalid_email_returns_422():
 def test_register_blank_name_returns_422():
     r = client.post("/merchants", json={"name": "", "email": "b@shop.com"})
     assert r.status_code == 422
+
+
+def test_register_blank_email_returns_422():
+    r = client.post("/merchants", json={"name": "X", "email": ""})
+    assert r.status_code == 422
