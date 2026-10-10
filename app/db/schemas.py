@@ -8,3 +8,13 @@ class MerchantIn(BaseModel):
 
 class MerchantOut(MerchantIn):
     id: int
+
+
+class ShoeIn(BaseModel):
+    brand: str = Field(min_length=1, max_length=60)
+    model: str = Field(min_length=1, max_length=100)
+    price: float = Field(gt=0)
+
+
+class ShoeOut(ShoeIn):
+    id: int
