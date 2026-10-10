@@ -2,7 +2,7 @@ import sqlite3
 from pathlib import Path
 
 DB_URI = "file:solefinder?mode=memory&cache=shared"
-SCHEMA = (Path(__file__).parent / "schema.sql").read_text()
+SCHEMA = (Path(__file__).parent / "db" / "schema.sql").read_text()
 
 # Keeps the in-memory DB alive for as long as the app runs.
 _keepalive = sqlite3.connect(DB_URI, uri=True, check_same_thread=False)
