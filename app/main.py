@@ -31,3 +31,9 @@ def add_shoe(data: schemas.ShoeIn, db: sqlite3.Connection = Depends(get_db)):
     row = db.execute("SELECT id, brand, model, price FROM shoes WHERE id = ?",
                      (cur.lastrowid,)).fetchone()
     return dict(row)
+
+
+@app.get("/shoes", response_model=list[schemas.ShoeOut])
+def list_shoes(db: sqlite3.Connection = Depends(get_db)):
+    rows = db.execute("SELECT id, brand, model, price FROM shoes ORDER BY id").fetchall()
+    return [dict(r) for r in rows]
