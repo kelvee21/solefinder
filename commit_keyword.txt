@@ -1,0 +1,12 @@
+Item keys (note these for commit messages)
+Key	Item
+AGILE-8	Set up CI pipeline (Task)
+AGILE-9	Merchant registration
+AGILE-10	Add shoe
+AGILE-11	Browse shoes
+AGILE-12	Search by brand
+AGILE-13	Update/delete shoe
+AGILE-14	Customer registration
+AGILE-15	Health endpoint
+AGILE-16	Cart
+AGILE-17	AI recognition (should be just below the cart, so scroll down to confirm)
